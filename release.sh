@@ -6,5 +6,6 @@ fi
 
 TAG=$(date +"r%Y.%m.%d")
 
+hub sync
 hub release create $TAG
 git pull

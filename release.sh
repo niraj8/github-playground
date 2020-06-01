@@ -4,8 +4,23 @@ if ! [ -x "$(command -v hub)" ]; then
     exit -1
 fi
 
-TAG=$(date +"r%Y.%m.%d")
+# [ $(hub sync | grep warning) ]
+if [[ -n $(git status -s) ]] ; then
+	echo 'modified/untracked files found'
+	git status -s
+fi
 
-hub sync
-hub release create $TAG
-git pull
+if [[ -n $(git --no-pager log --oneline origin/master..master) ]] ; then
+	echo "unpushed commits found"
+	git --no-pager log --oneline origin/master..master
+fi
+
+read -r -p "Are you sure you want to tag a release? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+	TAG=$(date +"r%Y.%m.%d")
+    hub release create $TAG
+    
+else
+    exit -1
+fi

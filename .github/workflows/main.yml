@@ -1,0 +1,21 @@
+name: playground
+
+on:
+  push:
+    branches:
+      -master
+  workflow_dispatch:
+    inputs:
+      dispatch_source_repository:
+        description: 'dispatch source repo'
+      dispatch_run_id:
+        description: 'run id for the dispatch source'
+
+jobs:
+  test-dispatch:
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: curl is available?
+      run: curl httpbin.org/ip
+    - name: runs shell script?
+      run: chmod +x ./workflow_dispatch.sh && ./workflow_dispatch.sh

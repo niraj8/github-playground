@@ -3,7 +3,7 @@ name: playground
 on:
   push:
     branches:
-      -master
+      - master
   workflow_dispatch:
     inputs:
       dispatch_source_repository:

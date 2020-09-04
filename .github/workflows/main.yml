@@ -13,9 +13,13 @@ on:
 
 jobs:
   test-dispatch:
-    - name: checkout
-      uses: actions/checkout@v2
-    - name: curl is available?
-      run: curl httpbin.org/ip
-    - name: runs shell script?
-      run: chmod +x ./workflow_dispatch.sh && ./workflow_dispatch.sh
+    env:
+      PAT: ${{ secrets.PAT }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: curl is available?
+        run: curl httpbin.org/ip
+      - name: runs shell script?
+        run: chmod +x ./workflow_dispatch.sh && ./workflow_dispatch.sh

@@ -12,7 +12,7 @@ on:
         description: 'run id for the dispatch source'
 
 jobs:
-  test-dispatch:
+  playground:
     env:
       PAT: ${{ secrets.PAT }}
     runs-on: ubuntu-latest
@@ -23,3 +23,5 @@ jobs:
         run: curl httpbin.org/ip
       - name: runs shell script?
         run: chmod +x ./workflow_dispatch.sh && ./workflow_dispatch.sh
+      - name: env vars in step name ${{ GITHUB_REPOSITORY }}
+        run: echo hi

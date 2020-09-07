@@ -24,4 +24,10 @@ jobs:
       - name: runs shell script?
         run: chmod +x ./workflow_dispatch.sh && ./workflow_dispatch.sh
       - name: env vars in step name $GITHUB_REPOSITORY
-        run: echo hi
+        run: echo $GITHUB_REPOSITORY
+      - name: env vars in step name ${{ github.ref }}
+        env:
+          GITHUB_REF: ${{ github.ref}}
+        run: echo $GITHUB_REF
+      - name: env vars in step name $GITHUB_ACTOR
+        run: echo $GITHUB_ACTOR

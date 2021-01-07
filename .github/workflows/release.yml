@@ -1,0 +1,15 @@
+name: release
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  tags:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print ref
+        run: echo $GITHUB_REF
+      - name: print tag
+        run: ${GITHUB_REF/refs\/tags\//}

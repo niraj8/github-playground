@@ -29,7 +29,7 @@ jobs:
         env:
           GITHUB_REF: ${{ github.ref}}
         run: echo $GITHUB_REF
-      - name: env vars in step name ${{ GITHUB_ACTOR }}
+      - name: env vars in step name don't work
         run: echo $GITHUB_ACTOR
       - name: Dump github context
         run:   echo "$GITHUB_CONTEXT"

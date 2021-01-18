@@ -31,3 +31,8 @@ jobs:
         run: echo $GITHUB_REF
       - name: env vars in step name ${{ GITHUB_ACTOR }}
         run: echo $GITHUB_ACTOR
+      - name: Dump github context
+        run:   echo "$GITHUB_CONTEXT"
+        shell: bash
+        env:
+         GITHUB_CONTEXT: ${{ toJson(github) }}

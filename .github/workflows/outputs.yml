@@ -13,7 +13,7 @@ jobs:
       - id: list-dirs
         run: |
           DIRS=$(ls -d live/*/)
-          echo "::set-output name=dirs::$( echo "DIRS" )"
+          echo "::set-output name=dirs::$( echo "$DIRS" )"
       - run: echo ${{ steps.list-dirs.outputs.dirs }}
     outputs:
       dirs: ${{ toJSON(steps.array-outputs.outputs.dirs) }}

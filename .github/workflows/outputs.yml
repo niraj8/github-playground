@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+      - master
+
+
+jobs:
+  array-outputs:
+    runs-on: ubuntu-22.04
+    steps:
+      - run: |
+          mkdir -p live/{foo,bar}
+      - id: list-dirs
+        run: |
+          DIRS=$(ls -d live/*/)
+          echo "::set-output name=dirs::$( echo "DIRS" )"
+      - run: echo ${{ steps.list-dirs.outputs.dirs }}
+    outputs:
+      dirs: ${{ toJSON(steps.array-outputs.outputs.dirs) }}
+
+  echo-array-outputs:
+    needs: [array-outputs]
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        dir: ${{fromJSON(needs.array-outputs.outputs.dirs)}}
+    steps:
+      - run: echo ${{ matrix.dir }}

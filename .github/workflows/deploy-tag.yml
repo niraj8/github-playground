@@ -1,0 +1,16 @@
+on:
+  push:
+    tags:
+      - 'r*'
+
+jobs:
+  main:
+    runs-on: ubuntu-22.04
+    steps:
+      # checkout tag
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+      - run: |
+          git describe --tags
+          echo "deploying tag ${{ github.ref }}"

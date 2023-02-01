@@ -1,7 +1,8 @@
+name: deploy release
 on:
-  push:
-    tags:
-      - 'r*'
+  release:
+    types:
+      - published
 
 jobs:
   main:

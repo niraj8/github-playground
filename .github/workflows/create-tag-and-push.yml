@@ -7,6 +7,7 @@ jobs:
   main:
     runs-on: ubuntu-22.04
     steps:
+      - uses: actions/checkout@v3
       - name: create and push tag
         run: |
           echo "RELEASE_TAG=r$(date +'%Y%m%d.%H%M%S')-${{ github.sha }}" >> $GITHUB_ENV

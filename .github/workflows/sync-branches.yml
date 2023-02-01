@@ -1,4 +1,4 @@
-name: Create production promotion pull request
+name: Create release promotion pull request
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  productionPromotion:
+  release-promotion:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -19,4 +19,8 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
-          branch: production-promotion
+          branch: release-promotion
+          title: Release master to Staging environment
+          body: |
+            Merge this Pull Request with Squash and Merge to merge changes 
+            from master to the release branch and deploy to Staging environment

@@ -22,5 +22,6 @@ jobs:
           branch: release-promotion
           title: Release master to Staging environment
           body: |
-            Merge this Pull Request with Squash and Merge to merge changes 
-            from master to the release branch and deploy to Staging environment
+            Merge this Pull Request with *Squash and Merge*
+            - Changes will be merged to the release branch
+            - Deployed to Staging environment

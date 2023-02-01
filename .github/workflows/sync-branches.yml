@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+
 jobs:
   productionPromotion:
     runs-on: ubuntu-latest
